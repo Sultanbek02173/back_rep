@@ -26,3 +26,19 @@ class HelloTestCase(TestCase):
         self.assertEqual(responce_get.content.decode(), expected_get)
         self.assertEqual(responce_post.content.decode(), expected_post)
         self.assertTrue(responce_get) #Проверка приход на данных
+
+    def test_get_contacts(self):
+        responce_get = self.client.get(reverse("contacts-page"))
+
+        expected_get = "Hello world!"
+
+        self.assertEqual(responce_get.status_code, 200)
+        self.assertEqual(responce_get.content.decode(), expected_get)
+
+    def test_get_about(self):
+        responce_get = self.client.get(reverse("about-page"))
+
+        expected_get = "This is massege!"
+
+        self.assertEqual(responce_get.status_code, 200)
+        self.assertEqual(responce_get.content.decode(), expected_get)

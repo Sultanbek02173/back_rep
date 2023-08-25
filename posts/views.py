@@ -26,9 +26,25 @@ def hello(request):
 
 def get_index(request):
     # print(request.__dict__)
-    print(request.user)
-    if request.method == "GET":
-        return HttpResponse("Главная страница")
-    else:
-        return HttpResponse("НЕ тот метод запроса")
+    # print(request.user)
+    # if request.method == "GET":
+    #     return HttpResponse("Главная страница")
+    # else:
+    #     return HttpResponse("НЕ тот метод запроса")
+    context = {
+        "title": "Главная страница",
+        "my_list": [1, 2, 3],
+    }
+    return render(request, "posts/index.html", context = context)
     
+def get_contacts(request):
+    context = {
+        "title": "Контакты",
+    }
+    return render(request, "posts/contacts.html", context=context)
+
+def get_about(request):
+    context = {
+        "title": "Страница о нас",
+    }
+    return render(request, "posts/about.html", context=context)
