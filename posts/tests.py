@@ -15,30 +15,36 @@ class HelloTestCase(TestCase):
         self.assertEqual(response.headers["name"], expected_header)
 
     def test_get_index(self):
-        responce_get = self.client.get(reverse("index-page"))
-        responce_post = self.client.post(reverse("index-page"))
-        
-        expected_get = "Главная страница"
-        expected_post = "НЕ тот метод запроса"
+        response = self.client.get(reverse("index-page"))
 
-        self.assertEqual(responce_get.status_code, 200)
-        self.assertEqual(responce_post.status_code, 200)
-        self.assertEqual(responce_get.content.decode(), expected_get)
-        self.assertEqual(responce_post.content.decode(), expected_post)
-        self.assertTrue(responce_get) #Проверка приход на данных
+        self.assertTemplateUsed(response, "posts/index.html")
+        self.assertEqual(response.status_code, 200)
+
+
+
+
+
+
+
+        # responce_post = self.client.post(reverse("index-page"))
+        
+        # expected_get = "Главная страница"
+        # expected_post = "НЕ тот метод запроса"
+
+        # self.assertEqual(responce_get.status_code, 200)
+        # self.assertEqual(responce_post.status_code, 200)
+        # self.assertEqual(responce_get.content.decode(), expected_get)
+        # self.assertEqual(responce_post.content.decode(), expected_post)
+        # self.assertTrue(responce_get) #Проверка приход на данных
 
     def test_get_contacts(self):
-        responce_get = self.client.get(reverse("contacts-page"))
+        response = self.client.get(reverse("contacts-page"))
 
-        expected_get = "Hello world!"
-
-        self.assertEqual(responce_get.status_code, 200)
-        self.assertEqual(responce_get.content.decode(), expected_get)
+        self.assertTemplateUsed(response, "posts/contacts.html")
+        self.assertEqual(response.status_code, 200)
 
     def test_get_about(self):
-        responce_get = self.client.get(reverse("about-page"))
+        response = self.client.get(reverse("about-page"))
 
-        expected_get = "This is massege!"
-
-        self.assertEqual(responce_get.status_code, 200)
-        self.assertEqual(responce_get.content.decode(), expected_get)
+        self.assertTemplateUsed(response, "posts/about.html")
+        self.assertEqual(response.status_code, 200)
