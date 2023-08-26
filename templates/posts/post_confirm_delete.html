@@ -1,0 +1,8 @@
+<h1>Вы уверенны удалить этот пост?</h1>
+
+<form action="{% url 'post-delete' post.pk %}" method="post">
+    {% csrf_token %}
+    <button type="submit">Да</button>
+</form>
+
+<button type="button"><a href="{% url 'index-page' %}">Нет</a></button>

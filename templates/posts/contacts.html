@@ -2,8 +2,8 @@
 
 {% block content %}
 
-    <h1>Contact</h1>
-    <a href="{% url 'index-page' %}">На главную</a>
-    <a href="{% url 'about-page' %}">Страница о нас</a>
+<h1>Contact</h1>
+{% include 'posts/includes/lincks_includes.html' %}
+
 
 {% endblock %}
