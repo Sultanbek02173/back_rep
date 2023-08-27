@@ -10,21 +10,66 @@
         {{ post.created }}
     </figcaption>
 </figure>
-<p>{{ post.content }}</p>
+<p>{{ post.content }}</p> <br>
+
+
+<!-- Коментарий -->
+
+{% for comment in post.post_commet.all|slice:4 %}
+
+<div class="card">
+    <h5 class="card-header">
+        {{ comment.created }}
+    </h5>
+    <div class="card-body">
+        <h5 class="card-title">{{ comment.name }}</h5>
+        <p class="card-text">{{ comment.text }}</p>
+    </div>
+</div><br>
+
+{% endfor %}
 
 <br>
 
-<form action="{% url 'post-update' post.id %}">
+<form action="" method="post">
     {% csrf_token %}
-    <button type="submit">Обновить данные</button>
+
+    <!-- <input type="hidden" value="{{ post.id }}" name="post_id">
+    <div class="mb-3 row">
+        <label for="inputName" class="col-sm-2 col-form-label">Имя пользователя</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="inputName" name="name">
+        </div>
+    </div>
+
+    <div class="mb-3 row">
+        <label for="inputText" class="col-sm-2 col-form-label">Текст коментария</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="inputText" name="text">
+        </div>
+    </div> -->
+
+    {{ form.as_p }}
+
+    <div class="col-auto">
+        <button type="submit" class="btn btn-primary mb-3">Оставить коментарий</button>
+    </div>
+
 </form>
 
+
+
+<!-- Конец коментария -->
+<br>
+
+<a href="{% url 'post-update' post.pk %}"><button>Обновить данные</button></a>
+<br>
 <br>
 <form action="{% url 'post-delete' post.pk %}" method="get">
     {% csrf_token %}
     <button type="submit">Удалить пост</button>
 </form>
 <br>
-{% include 'posts/includes/lincks_includes.html' %} 
+{% include 'posts/includes/lincks_includes.html' %}
 
 {% endblock %}

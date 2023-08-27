@@ -1,8 +1,17 @@
-<h1>Вы уверенны удалить этот пост?</h1>
+{% extends 'base.html' %}
+
+{% block content %}
+    
+
+<h1>Вы уверенны удалить этот пост({{ post.title }})?</h1>
 
 <form action="{% url 'post-delete' post.pk %}" method="post">
     {% csrf_token %}
     <button type="submit">Да</button>
 </form>
 
-<button type="button"><a href="{% url 'index-page' %}">Нет</a></button>
+<button type="button"><a href="{% url 'detailPost-page' post.pk %}">Нет</a></button> <br>
+
+{% include 'posts/includes/lincks_includes.html' %} 
+
+{% endblock %}

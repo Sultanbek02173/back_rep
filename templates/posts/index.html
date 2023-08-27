@@ -17,8 +17,9 @@
 {% endfor %}
 <br>
 
+<a href="{% url 'post-creat' %}"><button>Создать пост</button></a><br>
+
 {% include 'posts/includes/lincks_includes.html' %}
 
-<button type="button"><a href="{% url 'post-creat' %}">Создать пост</a></button><br>
 
 {% endblock %}
