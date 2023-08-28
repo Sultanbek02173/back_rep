@@ -30,6 +30,7 @@
 {% endfor %}
 
 <br>
+{% if user.is_authenticated %}
 
 <form action="" method="post">
     {% csrf_token %}
@@ -62,6 +63,7 @@
 <!-- Конец коментария -->
 <br>
 
+
 <a href="{% url 'post-update' post.pk %}"><button>Обновить данные</button></a>
 <br>
 <br>
@@ -69,7 +71,10 @@
     {% csrf_token %}
     <button type="submit">Удалить пост</button>
 </form>
+
 <br>
+
+{% endif %}
 {% include 'posts/includes/lincks_includes.html' %}
 
 {% endblock %}

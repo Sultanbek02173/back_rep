@@ -7,6 +7,32 @@ from posts.models import Post, Commets
 from django.views import generic
 from django.urls import reverse_lazy
 
+from posts.serializers import PostSerializer
+from rest_framework import generics
+
+class PostListView(generics.ListAPIView):
+    serializer_class = PostSerializer
+    queryset = Post.objects.all()
+
+
+class PostDetailAPIView(generics.RetrieveAPIView):
+    serializer_class = PostSerializer
+    queryset = Post.objects.all()
+    lookup_field = "id"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 def hello(request):
     body = "<h1>Hello</h1>"
     headers = {"name": "Alex"}
